@@ -1,13 +1,3 @@
----
-title: AegisCore
-emoji: 🛡️
-colorFrom: blue
-colorTo: cyan
-sdk: docker
-pinned: false
-license: mit
-short_description: 'Enterprise-grade fraud intelligence platform powered by SMOTE'
----
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0:0052D4,100:4364F7,200:6FB1FC&height=250&section=header&text=AegisCore&fontSize=80&fontAlignY=35&animation=twinkling&fontColor=ffffff&desc=Fraud%20Intelligence%20Platform&descAlignY=55&descSize=20" width="100%" />
