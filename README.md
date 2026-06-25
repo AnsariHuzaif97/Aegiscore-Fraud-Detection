@@ -1,6 +1,5 @@
-
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0:0052D4,100:4364F7,200:6FB1FC&height=250&section=header&text=AegisCore&fontSize=80&fontAlignY=35&animation=twinkling&fontColor=ffffff&desc=Fraud%20Intelligence%20Platform&descAlignY=55&descSize=20" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0052D4&height=250&section=header&text=AegisCore&fontSize=80&fontAlignY=35&animation=twinkling&fontColor=ffffff&desc=Fraud%20Intelligence%20Platform&descAlignY=55&descSize=20" width="100%" />
 </div>
 
 <div align="center">
@@ -15,6 +14,7 @@
   <img src="https://img.shields.io/badge/Python-0052D4?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI">
   <img src="https://img.shields.io/badge/scikit--learn-4364F7?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Scikit-Learn">
+  <img src="https://img.shields.io/badge/SQLite-0078D7?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
   <img src="https://img.shields.io/badge/JavaScript-6FB1FC?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript">
 </p>
@@ -44,6 +44,7 @@ graph TD;
     B --> C{ML Inference Engine};
     C -->|Loads| D[(fraud_detection_artifacts.pkl)];
     C -->|Returns Prediction| B;
+    B -->|Logs Transaction| E[(SQLite Database)];
     B -->|Response| A;
 ```
 
@@ -80,7 +81,9 @@ uvicorn main:app --host 0.0.0.0 --port 7860
 aegiscore/
 ├── backend/                       # Core API and prediction logic
 │   ├── main.py                    # FastAPI entrypoint
-│   └── ml.py                      # Model loading and inference wrappers
+│   ├── ml.py                      # Model loading and inference wrappers
+│   ├── db.py                      # Database schema and operations
+│   └── fip_database.db            # SQLite database file
 ├── frontend/                      # Presentation layer
 │   ├── index.html                 # Landing page
 │   └── dashboard.html             # Main analytics interface
