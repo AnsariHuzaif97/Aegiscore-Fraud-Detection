@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AegisCore | Next-Gen Fraud Intelligence</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="stylesheet" href="/css/landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        @keyframes floatY {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: floatY 6s ease-in-out infinite;
+        }
+        @keyframes bounceGlow {
+            0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
+            50% { transform: translateY(-20px) scale(1.05); box-shadow: 0 20px 40px rgba(0, 229, 255, 0.6); }
+        }
+        .dancing-box {
+            animation: bounceGlow 4s ease-in-out infinite;
+        }
+        @keyframes floatBoxAnim {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .float-box {
+            animation: floatBoxAnim 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/logo.png" alt="AegisCore Logo" style="width: 32px; height: 32px; border-radius: 6px; box-shadow: 0 0 12px rgba(0, 229, 255, 0.6); margin-right: 10px;">
+            <h2>AegisCore</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#engine">Engine</a></li>
+            <li><a href="#platform">Platform</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+        </ul>
+        <a href="/dashboard" class="btn btn-primary">Launch App</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div style="position: relative; z-index: 10;" class="dancing-box">
+            <h1 class="hero-title reveal delay-1 floating">
+                Outsmart Fraud. <br>
+                <span class="text-gradient">Before It Happens.</span>
+            </h1>
+        </div>
+        <p class="hero-subtitle reveal delay-2 floating" style="animation-delay: 1s;">
+            AegisCore is not just a tool; it's a defensive ecosystem. By unifying XGBoost architectures with real-time SHAP matrices, we deliver impenetrable financial security with zero black-box mystery.
+        </p>
+        <div class="hero-cta reveal delay-3">
+            <a href="/dashboard" class="btn btn-primary btn-large btn-glow">Enter the Dashboard</a>
+        </div>
+    </header>
+
+    <!-- Terminal Animation Window -->
+    <section class="terminal-section reveal delay-4" id="engine">
+        <div class="terminal-window float-box">
+            <div class="terminal-header">
+                <div class="term-dots">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                </div>
+                <div class="term-title">AegisCore Elite v3.1.0</div>
+            </div>
+            <div class="terminal-body" id="terminal-typing">
+                <!-- Javascript will inject lines here sequentially -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid Section -->
+    <section class="bento-section reveal" id="platform">
+        <div class="bento-header">
+            <h2>A Paradigm Shift in Security</h2>
+            <p>We completely redesigned how institutions interact with risk models.</p>
+        </div>
+        <div class="bento-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+            <!-- Card 1 -->
+            <div class="bento-card glass-tilt" style="display: flex; flex-direction: column;">
+                <div class="bento-img-container" style="height: 250px; flex-shrink: 0; border-radius: 12px 12px 0 0; overflow: hidden;">
+                    <img src="/images/transaction_network_1782214527863.png" alt="Neural Network" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="bento-content" style="flex-grow: 1;">
+                    <h3>The Predictive Brain</h3>
+                    <p>Our ultra-optimized XGBoost pipeline ingests millions of events, mapping complex PCA telemetry instantly to catch anomalies legacy rules miss.</p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bento-card glass-tilt" id="explainability" style="display: flex; flex-direction: column;">
+                <div class="bento-img-container" style="height: 250px; flex-shrink: 0; border-radius: 12px 12px 0 0; overflow: hidden;">
+                    <img src="/images/shap_global_beeswarm_1782223553000.png" alt="SHAP Plot" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="bento-content" style="flex-grow: 1;">
+                    <h3>Absolute Transparency</h3>
+                    <p>SHAP integration ensures every blocked transaction is accompanied by clear, mathematical reasoning mapped back to the original Jupyter notebook logic.</p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bento-card glass-tilt" style="display: flex; flex-direction: column;">
+                <div class="bento-img-container" style="height: 250px; flex-shrink: 0; border-radius: 12px 12px 0 0; overflow: hidden;">
+                    <img src="/images/server_shield_1782214553072.png" alt="Shield" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="bento-content" style="flex-grow: 1;">
+                    <h3>Enterprise Armor</h3>
+                    <p>Built for scale with FastAPI. Deployed in highly secure environments, protecting the world's most critical financial infrastructure.</p>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bento-card glass-tilt" style="display: flex; flex-direction: column;">
+                <div class="bento-img-container" style="height: 250px; flex-shrink: 0; border-radius: 12px 12px 0 0; overflow: hidden;">
+                    <img src="/images/fraud_dashboard_1782214539965.png" alt="Dashboard" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="bento-content" style="flex-grow: 1;">
+                    <h3>Command Center</h3>
+                    <p>Dynamic Risk Probability distributions, real-time batch ZIP extraction reports, and live cumulative capital protected analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Architecture Section (Git Flow) -->
+    <section class="architecture-section reveal" id="architecture" style="padding: 6rem 2rem; position: relative;">
+        <div class="bento-header" style="text-align: center; margin-bottom: 5rem;">
+            <h2 style="font-size: 3rem; background: linear-gradient(90deg, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">End-to-End System Architecture</h2>
+            <p style="font-size: 1.2rem; color: #94a3b8;">Designed like a distributed version control pipeline.</p>
+        </div>
+        
+        <div class="git-timeline" style="max-width: 800px; margin: 0 auto; position: relative; padding-left: 60px;">
+             <!-- The main git branch line -->
+             <div style="position: absolute; left: 28px; top: 0; bottom: 0; width: 6px; background: linear-gradient(to bottom, var(--primary), var(--danger), #d500f9, var(--cyan)); border-radius: 3px; box-shadow: 0 0 15px rgba(255,255,255,0.2);"></div>
+             
+             <!-- Commit 1 -->
+             <div class="arch-node glass-tilt reveal" style="position: relative; margin-bottom: 4rem; padding: 2rem; border-left: 6px solid var(--primary); border-radius: 0 16px 16px 0; background: rgba(0, 230, 118, 0.03);">
+                <!-- Node Dot -->
+                <div style="position: absolute; left: -44px; top: 32px; width: 22px; height: 22px; border-radius: 50%; background: #0f172a; border: 5px solid var(--primary); z-index: 2; box-shadow: 0 0 15px var(--primary);"></div>
+                <!-- Connector Branch -->
+                <div style="position: absolute; left: -22px; top: 40px; width: 22px; height: 6px; background: var(--primary);"></div>
+                
+                <h3 style="color: var(--primary); font-family: 'JetBrains Mono'; font-size: 1.3rem; margin-bottom: 0.8rem;"><span style="color: #64748b;">[commit: init]</span> Data Ingestion & SMOTE</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">Raw transaction vectors are ingested. Severe class imbalances are algorithmically rectified using SMOTE to ensure the model correctly learns the minority fraud cases.</p>
+             </div>
+
+             <!-- Commit 2 -->
+             <div class="arch-node glass-tilt reveal" style="position: relative; margin-bottom: 4rem; padding: 2rem; border-left: 6px solid var(--danger); border-radius: 0 16px 16px 0; background: rgba(255, 0, 85, 0.03);">
+                <div style="position: absolute; left: -44px; top: 32px; width: 22px; height: 22px; border-radius: 50%; background: #0f172a; border: 5px solid var(--danger); z-index: 2; box-shadow: 0 0 15px var(--danger);"></div>
+                <div style="position: absolute; left: -22px; top: 40px; width: 22px; height: 6px; background: var(--danger);"></div>
+                
+                <h3 style="color: var(--danger); font-family: 'JetBrains Mono'; font-size: 1.3rem; margin-bottom: 0.8rem;"><span style="color: #64748b;">[branch: ml-core]</span> XGBoost Inference Engine</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">Preprocessed data is routed into our highly optimized XGBoost pipeline. The model outputs a high-precision probability score, rapidly segmenting safe transactions from anomalies.</p>
+             </div>
+
+             <!-- Commit 3 -->
+             <div class="arch-node glass-tilt reveal" style="position: relative; margin-bottom: 4rem; padding: 2rem; border-left: 6px solid #d500f9; border-radius: 0 16px 16px 0; background: rgba(213, 0, 249, 0.03);">
+                <div style="position: absolute; left: -44px; top: 32px; width: 22px; height: 22px; border-radius: 50%; background: #0f172a; border: 5px solid #d500f9; z-index: 2; box-shadow: 0 0 15px #d500f9;"></div>
+                <div style="position: absolute; left: -22px; top: 40px; width: 22px; height: 6px; background: #d500f9;"></div>
+                
+                <h3 style="color: #d500f9; font-family: 'JetBrains Mono'; font-size: 1.3rem; margin-bottom: 0.8rem;"><span style="color: #64748b;">[merge: backend]</span> FastAPI + SHAP Layer</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">A blazing fast asynchronous Python FastAPI backend orchestrates the logic. For anomalies, SHAP values are instantly computed to mathematically reverse-engineer the features.</p>
+             </div>
+
+             <!-- Commit 4 -->
+             <div class="arch-node glass-tilt reveal" style="position: relative; padding: 2rem; border-left: 6px solid var(--cyan); border-radius: 0 16px 16px 0; background: rgba(0, 229, 255, 0.03);">
+                <div style="position: absolute; left: -44px; top: 32px; width: 22px; height: 22px; border-radius: 50%; background: #0f172a; border: 5px solid var(--cyan); z-index: 2; box-shadow: 0 0 15px var(--cyan);"></div>
+                <div style="position: absolute; left: -22px; top: 40px; width: 22px; height: 6px; background: var(--cyan);"></div>
+                
+                <h3 style="color: var(--cyan); font-family: 'JetBrains Mono'; font-size: 1.3rem; margin-bottom: 0.8rem;"><span style="color: #64748b;">[tag: production]</span> Analytics Command Center</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">The frontend receives the payload and renders real-time data visualizations, dynamically rebuilding the Confidence Distribution histograms and logging the event.</p>
+             </div>
+        </div>
+    </section>
+
+    <footer class="footer reveal">
+        <h2>Ready to secure your network?</h2>
+        <br>
+        <a href="/dashboard" class="btn btn-primary btn-large btn-glow">Get Started</a>
+    </footer>
+
+    <script>
+        // Terminal Typing Animation
+        const termLines = [
+            "[00:01] <span style='color: #00e5ff'>FastAPI ></span> Booting asynchronous inference server... <span style='color: #00e676'>[OK]</span>",
+            "[00:01] <span style='color: #00e5ff'>SQLite ></span> Establishing audit trail database connection... <span style='color: #00e676'>[OK]</span>",
+            "[00:02] <span style='color: #d500f9'>XGBoost ></span> Loading SMOTE-balanced model artifacts... <span style='color: #00e676'>[OK]</span>",
+            "[00:03] <span style='color: #00e5ff'>system ></span> Ingesting Batch CSV payload (70 transactions)... <span style='color: #00e676'>[OK]</span>",
+            "<div class='term-alert'>>> CRITICAL: HIGH PROBABILITY (99.8%) ANOMALY DETECTED in TXN_42</div>",
+            "[00:04] <span style='color: #d500f9'>SHAP ></span> Computing exact feature contributions... <span style='color: #00e676'>[OK]</span>",
+            "   <span style='color: #ff0055'>↑</span> V14 (+24.1%) - Correlated PCA Anomaly",
+            "   <span style='color: #ff0055'>↑</span> Amount (+18.4%) - ₹12,500 High Volume",
+            "   <span style='color: #00e676'>↓</span> V10 (-4.2%) - Mitigating Factor",
+            "[00:05] <span style='color: #00e5ff'>system ></span> Routing payload to Command Center UI... <span style='color: #00e676'>[DONE]</span>"
+        ];
+
+        let lineIdx = 0;
+        const terminalBody = document.getElementById("terminal-typing");
+        
+        function typeLine() {
+            if (lineIdx < termLines.length) {
+                const div = document.createElement("div");
+                div.className = "term-line hide";
+                div.innerHTML = termLines[lineIdx];
+                terminalBody.appendChild(div);
+                
+                // Trigger reflow to animate in
+                setTimeout(() => div.classList.remove("hide"), 50);
+                
+                lineIdx++;
+                setTimeout(typeLine, Math.random() * 800 + 400); // Random delay between 400-1200ms
+            } else {
+                // Add blinking cursor
+                const cursor = document.createElement("div");
+                cursor.className = "term-cursor";
+                cursor.innerHTML = "_";
+                terminalBody.appendChild(cursor);
+            }
+        }
+
+        setTimeout(typeLine, 1000);
+
+        // Scroll Reveal Animation (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 3D Tilt Effect on Bento Cards
+        document.querySelectorAll('.glass-tilt').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)`;
+            });
+        });
+
+        // Ticker Animation
+        setInterval(() => {
+            const el = document.getElementById('threats-blocked');
+            let val = parseInt(el.innerText.replace(/,/g, ''));
+            val += Math.floor(Math.random() * 5);
+            el.innerText = val.toLocaleString();
+        }, 3000);
+
+        // Parallax Scroll Effect for Orbs
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            document.querySelectorAll('.orb').forEach((orb, index) => {
+                const speed = (index + 1) * 0.15;
+                orb.style.transform = `translateY(${scrollY * speed}px) scale(${1 + (scrollY * 0.0005)})`;
+            });
+        });
+    </script>
+</body>
+</html>

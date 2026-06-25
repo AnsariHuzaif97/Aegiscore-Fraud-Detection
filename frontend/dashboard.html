@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AegisCore - Intelligence Dashboard</title>
+    <link rel="icon" href="/logo.png" type="image/png">
+    <link rel="stylesheet" href="/css/style.css?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo" style="display: flex; align-items: center; gap: 12px; margin-bottom: 2.5rem;">
+                <img src="/logo.png" alt="AegisCore Logo" style="width: 38px; height: 38px; border-radius: 8px; object-fit: cover; box-shadow: 0 0 15px rgba(0, 229, 255, 0.4); border: 1px solid rgba(0, 229, 255, 0.5);">
+                <h2 style="margin-bottom: 0; font-size: 1.6rem;">AegisCore</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active" onclick="switchTab('dashboard')">Dashboard</li>
+                <li onclick="switchTab('investigation')">Investigation Center</li>
+                <li onclick="switchTab('audit')">Audit Trail</li>
+                <li onclick="switchTab('batch')">Batch Processor</li>
+                <li onclick="switchTab('explainability')">Explainability Hub</li>
+            </ul>
+            
+            <div style="margin-top: auto; padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+                <a href="/" class="btn" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); text-align: center; text-decoration: none; padding: 0.8rem; font-family: 'JetBrains Mono'; font-size: 0.85rem; border-radius: 8px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);" onmouseover="this.style.background='rgba(0, 229, 255, 0.1)'; this.style.color='var(--cyan)'; this.style.borderColor='var(--cyan)';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.color='var(--text-muted)'; this.style.borderColor='rgba(255,255,255,0.1)';">⏴ Return to Home</a>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header>
+                <h1 id="page-title">Command Center</h1>
+            </header>
+
+            <!-- Dashboard View -->
+            <section id="dashboard" class="view-section active">
+                <div class="stats-grid">
+                    <div class="stat-card glass">
+                        <h3>Critical Alerts</h3>
+                        <p class="stat-value text-danger" id="stat-alerts">0</p>
+                    </div>
+                    <div class="stat-card glass">
+                        <h3>Transactions Scanned</h3>
+                        <p class="stat-value" id="stat-scanned">0</p>
+                    </div>
+                    <div class="stat-card glass">
+                        <h3>Capital Saved</h3>
+                        <p class="stat-value text-success" id="stat-savings">₹0</p>
+                    </div>
+                    <div class="stat-card glass" style="border-top: 3px solid var(--danger);">
+                        <h3 style="color: var(--text-muted); font-size: 0.85rem; letter-spacing: 1px;">ANOMALY RATIO</h3>
+                        <p class="stat-value" id="stat-health" style="font-size: 2.5rem; text-shadow: 0 0 15px rgba(255,0,85,0.4);">0.00%</p>
+                    </div>
+                </div>
+
+                <div class="charts-container" style="height: 400px; margin-top: 2rem;">
+                    <div class="chart-card glass" style="height: 100%;">
+                        <h3 style="margin-bottom: 1rem;">AI Confidence Score Distribution</h3>
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Investigation Center View -->
+            <section id="investigation" class="view-section">
+                <div class="investigation-grid">
+                    <!-- Manual Input Form -->
+                    <div class="input-panel glass" style="display: flex; flex-direction: column; max-height: 80vh;">
+                        <h3>Manual Telemetry Input</h3>
+                        <p class="text-muted" style="margin-bottom: 1.5rem; font-size: 0.9rem;">Override pipeline and simulate transaction risk.</p>
+                        
+                        <div class="telemetry-form" style="flex: 1; overflow-y: auto; padding-right: 1rem;">
+                            <div class="row">
+                                <div class="col form-group">
+                                    <label>Time</label>
+                                    <input type="number" id="inp-Time" value="0" class="glass-input">
+                                </div>
+                                <div class="col form-group">
+                                    <label>Amount (₹)</label>
+                                    <input type="number" id="inp-Amount" value="5000" class="glass-input">
+                                </div>
+                            </div>
+                            
+                            <label style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem; display: block;">PCA Features (V1 - V28)</label>
+                            <div class="pca-features-grid">
+                                <script>
+                                    for(let i=1; i<=28; i++) {
+                                        document.write(`
+                                        <div class="form-group-compact">
+                                            <label>V${i}</label>
+                                            <input type="number" step="any" id="inp-V${i}" value="0.0" class="glass-input-compact">
+                                        </div>`);
+                                    }
+                                </script>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-block" style="margin-top: 1.5rem;" onclick="runPrediction()">Execute Model Inference</button>
+                    </div>
+
+                    <!-- Prediction Result & SHAP -->
+                    <div class="result-panel glass">
+                        <h3>Inference Result</h3>
+                        
+                        <div class="gauge-container">
+                            <div class="gauge">
+                                <div class="gauge-fill" id="risk-gauge-fill" style="width: 0%; background: #00e676;"></div>
+                            </div>
+                            <div class="gauge-labels">
+                                <span>0% (SAFE)</span>
+                                <span>50%</span>
+                                <span>100% (CRITICAL)</span>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 1rem; margin-bottom: 2rem;">
+                            <h1 id="risk-prob" style="font-size: 3rem; font-family: 'JetBrains Mono'; margin: 0;">--%</h1>
+                            <div class="badge" id="risk-badge" style="background: rgba(255,255,255,0.1);">AWAITING TELEMETRY</div>
+                        </div>
+
+                        <h3>Explainability Matrix (SHAP)</h3>
+                        <div id="shap-container" class="shap-container" style="margin-top: 1.5rem;">
+                            <p class="text-muted text-center" style="margin-top: 2rem;">Run inference to generate Fraud DNA.</p>
+                        </div>
+                        <div id="ai-explanation" class="glass" style="margin-top: 1.5rem; padding: 1.2rem; border-left: 4px solid var(--cyan); display: none; background: rgba(0,229,255,0.02);">
+                            <h4 style="margin-bottom: 0.5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);"><span style="display:inline-block; width:8px; height:8px; background:var(--cyan); border-radius:50%; margin-right:6px; box-shadow: 0 0 8px var(--cyan);"></span>AI Analyst Conclusion</h4>
+                            <p id="ai-explanation-text" style="font-size: 0.95rem; line-height: 1.5; color: #fff;"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Batch Processor View -->
+            <section id="batch" class="view-section">
+                <div class="glass" style="padding: 3rem; border-radius: 16px; text-align: center; margin-bottom: 2rem; border: 2px dashed rgba(0,229,255,0.3); transition: 0.3s; background: rgba(0,229,255,0.02);" id="drop-zone" ondragover="this.style.borderColor='var(--cyan)'; this.style.background='rgba(0,229,255,0.05)'; event.preventDefault();" ondragleave="this.style.borderColor='rgba(0,229,255,0.3)'; this.style.background='rgba(0,229,255,0.02)';">
+                    <div style="font-size: 3rem; margin-bottom: 1rem; filter: drop-shadow(0 0 10px rgba(0,229,255,0.5));">☁️</div>
+                    <h2 style="margin-bottom: 0.5rem; font-family: 'JetBrains Mono';">Bulk Telemetry Ingestion</h2>
+                    <p class="text-muted" style="margin-bottom: 2rem;">Drop a CSV file containing transaction features to process through the pipeline.</p>
+                    <input type="file" id="csv-file" accept=".csv" style="display:none" onchange="processBatch()">
+                    <button class="btn btn-primary" onclick="document.getElementById('csv-file').click()" id="batch-btn" style="font-size: 1.1rem; padding: 1rem 3rem;">Select CSV File</button>
+                </div>
+                
+                <div id="batch-results" style="display: none; animation: slideUp 0.5s ease-out;">
+                    <div class="stats-grid" style="margin-bottom: 2rem;">
+                        <div class="stat-card glass" style="border-top: 3px solid var(--cyan);">
+                            <h3>Total Processed</h3>
+                            <p class="stat-value" id="batch-total" style="font-size: 2.2rem;">0</p>
+                        </div>
+                        <div class="stat-card glass" style="border-top: 3px solid var(--danger);">
+                            <h3>Fraud Detected</h3>
+                            <p class="stat-value" id="batch-fraud" style="font-size: 2.2rem; color: var(--danger); text-shadow: 0 0 10px rgba(255,0,85,0.5);">0</p>
+                        </div>
+                        <div class="stat-card glass" style="border-top: 3px solid var(--primary);">
+                            <h3>Capital Protected</h3>
+                            <p class="stat-value" id="batch-saved" style="font-size: 2.2rem; color: var(--primary);">₹0</p>
+                        </div>
+                    </div>
+                    
+                    <div class="glass" style="padding: 2rem; border-radius: 16px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <h3 style="margin-bottom: 0; display: flex; align-items: center;"><span style="display:inline-block; width:10px; height:10px; background:var(--cyan); border-radius:50%; margin-right:10px; box-shadow: 0 0 10px var(--cyan);"></span> Top Risk-Ranked Transactions</h3>
+                            <a href="/api/download-batch" download class="btn btn-primary" style="background: rgba(0,229,255,0.05); border: 1px solid var(--cyan); color: var(--cyan); padding: 0.6rem 1.2rem; font-size: 0.85rem; font-family: 'JetBrains Mono'; text-decoration: none; display: inline-block;">⬇ Download Reports (ZIP)</a>
+                        </div>
+                        <div style="max-height: 500px; max-width: 100%; overflow-x: auto; overflow-y: auto; padding-bottom: 1rem;">
+                            <table class="data-table" style="white-space: nowrap;">
+                                <thead>
+                                    <tr id="batch-table-header">
+                                        <th style="position: sticky; left: 0; background: #0f172a; z-index: 2;">Time Sequence</th>
+                                        <th style="position: sticky; left: 140px; background: #0f172a; z-index: 2;">Amount (₹)</th>
+                                        <th style="position: sticky; left: 260px; background: #0f172a; z-index: 2;">Fraud Prob.</th>
+                                        <th style="position: sticky; left: 390px; background: #0f172a; z-index: 2; box-shadow: 4px 0 8px rgba(0,0,0,0.4);">Risk Severity</th>
+                                        <!-- V1-V28 injected here -->
+                                    </tr>
+                                </thead>
+                                <tbody id="batch-table-body">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Audit Trail -->
+            <section id="audit" class="view-section">
+                <div class="glass" style="padding: 2rem; border-radius: 16px;">
+                    <h2 style="margin-bottom: 1.5rem;">Global Transaction Audit</h2>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Timestamp</th>
+                                <th>Amount (₹)</th>
+                                <th>Probability</th>
+                                <th>Risk Level</th>
+                            </tr>
+                        </thead>
+                        <tbody id="audit-table-body">
+                            <!-- Populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="explainability" class="view-section">
+                <div class="explainability-header" style="margin-bottom: 2rem;">
+                    <h2>Enterprise Explainability Hub</h2>
+                    <p class="text-muted">Global Feature Importance & Model DNA</p>
+                </div>
+
+                <div class="stats-grid" style="margin-bottom: 2rem;">
+                    <div class="stat-card glass" style="border-top: 3px solid var(--cyan);">
+                        <h3>Primary Driver</h3>
+                        <p class="stat-value" style="font-size: 1.5rem;">V4</p>
+                    </div>
+                    <div class="stat-card glass" style="border-top: 3px solid var(--danger);">
+                        <h3>Secondary Driver</h3>
+                        <p class="stat-value" style="font-size: 1.5rem; color: var(--danger);">V14</p>
+                    </div>
+                    <div class="stat-card glass" style="border-top: 3px solid var(--primary);">
+                        <h3>Explainer Engine</h3>
+                        <p class="stat-value" style="font-size: 1.5rem;">TreeExplainer</p>
+                    </div>
+                </div>
+
+                <div class="glass" style="padding: 2rem; border-radius: 16px;">
+                    <h3 style="margin-bottom: 1.5rem; font-family: 'JetBrains Mono';">Global SHAP Magnitude (Mean |SHAP|)</h3>
+                    
+                    <!-- Feature V4 -->
+                    <div class="shap-row">
+                        <div class="shap-label" style="width: 80px;">V4</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-center-line"></div>
+                            <div class="shap-bar-left-container"><div class="shap-bar negative" style="width: 45%;"></div></div>
+                            <div class="shap-bar-right-container"><div class="shap-bar positive" style="width: 55%;"></div></div>
+                        </div>
+                        <div class="shap-val" style="color: #fff;">0.0039</div>
+                    </div>
+                    
+                    <!-- Feature V14 -->
+                    <div class="shap-row">
+                        <div class="shap-label" style="width: 80px;">V14</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-center-line"></div>
+                            <div class="shap-bar-left-container"><div class="shap-bar negative" style="width: 55%;"></div></div>
+                            <div class="shap-bar-right-container"><div class="shap-bar positive" style="width: 45%;"></div></div>
+                        </div>
+                        <div class="shap-val" style="color: #fff;">0.0039</div>
+                    </div>
+
+                    <!-- Feature V3 -->
+                    <div class="shap-row">
+                        <div class="shap-label" style="width: 80px;">V3</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-center-line"></div>
+                            <div class="shap-bar-left-container"><div class="shap-bar negative" style="width: 32%;"></div></div>
+                            <div class="shap-bar-right-container"><div class="shap-bar positive" style="width: 26%;"></div></div>
+                        </div>
+                        <div class="shap-val" style="color: #fff;">0.0023</div>
+                    </div>
+
+                    <!-- Feature V12 -->
+                    <div class="shap-row">
+                        <div class="shap-label" style="width: 80px;">V12</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-center-line"></div>
+                            <div class="shap-bar-left-container"><div class="shap-bar negative" style="width: 28%;"></div></div>
+                            <div class="shap-bar-right-container"><div class="shap-bar positive" style="width: 23%;"></div></div>
+                        </div>
+                        <div class="shap-val" style="color: #fff;">0.0020</div>
+                    </div>
+                    
+                    <!-- Feature V7 -->
+                    <div class="shap-row">
+                        <div class="shap-label" style="width: 80px;">V7</div>
+                        <div class="shap-bar-wrapper">
+                            <div class="shap-center-line"></div>
+                            <div class="shap-bar-left-container"><div class="shap-bar negative" style="width: 24%;"></div></div>
+                            <div class="shap-bar-right-container"><div class="shap-bar positive" style="width: 19%;"></div></div>
+                        </div>
+                        <div class="shap-val" style="color: #fff;">0.0017</div>
+                    </div>
+
+                    <div style="margin-top: 2.5rem; padding: 1.5rem; background: rgba(0,229,255,0.03); border-left: 4px solid var(--cyan); border-radius: 0 8px 8px 0;">
+                        <h4 style="color: var(--cyan); margin-bottom: 0.5rem; font-family: 'Outfit'; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">Analysis</h4>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                            The global Explainability Matrix perfectly mirrors the notebook's permutation explainer data. 
+                            <strong>V4</strong> (0.003925) and <strong>V14</strong> (0.003923) act as the absolute dominant drivers of the model. The beeswarm analysis indicates that <em>high</em> values of <strong>V4</strong> strongly push the model towards a CRITICAL fraud prediction, whereas <em>low</em> values of <strong>V14</strong> act as the strongest risk catalyst. Features <strong>V3</strong>, <strong>V12</strong>, and <strong>V7</strong> follow closely behind in establishing the transaction's Risk DNA.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/api.js?v=8"></script>
+    <script src="/js/app.js?v=8"></script>
+</body>
+</html>
