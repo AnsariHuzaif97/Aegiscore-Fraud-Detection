@@ -1,8 +1,8 @@
 ---
 title: AegisCore
 emoji: 🛡️
-colorFrom: red
-colorTo: purple
+colorFrom: blue
+colorTo: cyan
 sdk: docker
 pinned: false
 license: mit
@@ -10,7 +10,11 @@ short_description: 'Enterprise-grade fraud intelligence platform powered by SMOT
 ---
 
 <div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=40&pause=1000&color=9C27B0&center=true&vCenter=true&width=800&lines=AegisCore;Enterprise+Fraud+Intelligence;Real-Time+Anomaly+Detection;Powered+by+FastAPI" alt="Typing SVG" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0:0052D4,100:4364F7,200:6FB1FC&height=250&section=header&text=AegisCore&fontSize=80&fontAlignY=35&animation=twinkling&fontColor=ffffff&desc=Fraud%20Intelligence%20Platform&descAlignY=55&descSize=20" width="100%" />
+</div>
+
+<div align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=30&pause=1000&color=4364F7&center=true&vCenter=true&width=800&lines=Enterprise+Fraud+Intelligence;Real-Time+Anomaly+Detection;Powered+by+FastAPI;SMOTE+Imbalance+Handling" alt="Typing SVG" />
 </div>
 
 <p align="center">
@@ -18,11 +22,11 @@ short_description: 'Enterprise-grade fraud intelligence platform powered by SMOT
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Python-0052D4?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI">
-  <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Scikit-Learn">
+  <img src="https://img.shields.io/badge/scikit--learn-4364F7?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="Scikit-Learn">
   <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/JavaScript-6FB1FC?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript">
 </p>
 
 ---
@@ -59,8 +63,8 @@ Launch AegisCore locally or in the cloud in under a minute using Docker.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/aegiscore.git
-cd aegiscore
+git clone https://github.com/AnsariHuzaif97/Aegiscore-Fraud-Detection.git
+cd Aegiscore-Fraud-Detection
 ```
 
 ### 2. Run with Docker (Recommended)
@@ -97,7 +101,7 @@ aegiscore/
 
 ## 🛡️ License & Acknowledgements
 
-Developed and maintained as part of a high-performance MLOps portfolio. This project is licensed under the **MIT License**.
+Developed and maintained by [AnsariHuzaif97](https://github.com/AnsariHuzaif97). This project is licensed under the **MIT License**.
 
 <div align="center">
   <b>Built with passion for data security and software engineering.</b>
